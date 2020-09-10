@@ -10,12 +10,12 @@ import (
 	"net/http"
 	"net/url"
 
-	"../common"
-	"../daos"
-	"../models"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
+	"movie_micro_service/common"
+	"movie_micro_service/daos"
+	"movie_micro_service/models"
 )
 
 // Movie manages Movie CRUD

@@ -9,13 +9,13 @@ import (
 	"io"
 	"os"
 
-	"./common"
-	"./controllers"
-	"./databases"
+	"movie_micro_service/common"
+	"movie_micro_service/controllers"
+	"movie_micro_service/databases"
+	_ "movie_micro_service/docs"
+
 	"github.com/gin-gonic/contrib/jwt"
 	"github.com/gin-gonic/gin"
-
-	_ "./docs"
 	"github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 )

@@ -6,9 +6,9 @@
 package daos
 
 import (
-	"../databases"
-	"../models"
 	"gopkg.in/mgo.v2/bson"
+	"movie_micro_service/databases"
+	"movie_micro_service/models"
 )
 
 // Movie manages Movie CRUD

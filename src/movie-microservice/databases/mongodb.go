@@ -8,9 +8,9 @@ package databases
 import (
 	"time"
 
-	"../common"
 	log "github.com/sirupsen/logrus"
 	mgo "gopkg.in/mgo.v2"
+	"movie_micro_service/common"
 )
 
 // MongoDB manages MongoDB connection

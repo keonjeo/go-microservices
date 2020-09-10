@@ -9,9 +9,9 @@ import (
 	"errors"
 	"time"
 
-	"../common"
 	jwt_lib "github.com/dgrijalva/jwt-go"
 	"gopkg.in/mgo.v2/bson"
+	"movie_micro_service/common"
 )
 
 // SdtClaims defines the custom claims
