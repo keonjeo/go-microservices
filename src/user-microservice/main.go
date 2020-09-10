@@ -9,15 +9,15 @@ import (
 	"io"
 	"os"
 
-	"./common"
-	"./controllers"
-	"./databases"
-	"github.com/gin-gonic/contrib/jwt"
-	"github.com/gin-gonic/gin"
+	"user_micro_service/common"
+	"user_micro_service/controllers"
+	"user_micro_service/databases"
+	_ "user_micro_service/docs"
 
-	_ "./docs"
 	"github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
+	"github.com/gin-gonic/contrib/jwt"
+	"github.com/gin-gonic/gin"
 )
 
 // Main manages main golang application
