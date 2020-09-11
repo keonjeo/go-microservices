@@ -4,7 +4,7 @@
 run:
 	go run *.go
 dep:
-	go get -v && go mod tidy
+	go mod download
 build:
 	go build
 test:

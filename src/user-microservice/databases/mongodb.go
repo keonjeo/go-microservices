@@ -8,28 +8,28 @@ package databases
 import (
 	"time"
 
-	"user_micro_service/common"
-	"user_micro_service/models"
 	log "github.com/sirupsen/logrus"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"user_micro_service/common"
+	"user_micro_service/models"
 )
 
 // MongoDB manages MongoDB connection
 type MongoDB struct {
 	MgDbSession  *mgo.Session
-	Databasename string
+	DatabaseName string
 }
 
 // Init initializes mongo database
 func (db *MongoDB) Init() error {
-	db.Databasename = common.Config.MgDbName
+	db.DatabaseName = common.Config.MgDbName
 
 	// DialInfo holds options for establishing a session with a MongoDB cluster.
 	dialInfo := &mgo.DialInfo{
 		Addrs:    []string{common.Config.MgAddrs}, // Get HOST + PORT
 		Timeout:  60 * time.Second,
-		Database: db.Databasename,            // Database name
+		Database: db.DatabaseName,            // Database name
 		Username: common.Config.MgDbUsername, // Username
 		Password: common.Config.MgDbPassword, // Password
 	}
@@ -57,13 +57,13 @@ func (db *MongoDB) initData() error {
 	defer sessionCopy.Close()
 
 	// Get a collection to execute the query against.
-	collection := sessionCopy.DB(db.Databasename).C(common.ColUsers)
+	collection := sessionCopy.DB(db.DatabaseName).C(common.ColUsers)
 	count, err = collection.Find(bson.M{}).Count()
 
 	if count < 1 {
 		// Create admin/admin account
 		var user models.User
-		user = models.User{bson.NewObjectId(), "admin", "admin"}
+		user = models.User{ID: bson.NewObjectId(), Name: "admin", Password: "admin"}
 		err = collection.Insert(&user)
 	}
 

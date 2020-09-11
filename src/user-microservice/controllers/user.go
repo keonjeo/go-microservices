@@ -86,10 +86,10 @@ func (u *User) AddUser(ctx *gin.Context) {
 		return
 	}
 
-	user := models.User{bson.NewObjectId(), addUser.Name, addUser.Password}
+	user := models.User{ID: bson.NewObjectId(), Name: addUser.Name, Password: addUser.Password}
 	err := u.userDAO.Insert(user)
 	if err == nil {
-		ctx.JSON(http.StatusOK, models.Message{"Successfully"})
+		ctx.JSON(http.StatusOK, models.Message{Message: "Successfully"})
 		log.Debug("Registered a new user = " + user.Name + ", password = " + user.Password)
 	} else {
 		ctx.JSON(http.StatusInternalServerError, models.Error{common.StatusCodeUnknown, err.Error()})

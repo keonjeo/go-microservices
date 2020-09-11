@@ -46,7 +46,7 @@ func (m *Movie) Login(ctx *gin.Context) {
 	var authAddr string = common.Config.AuthAddr + "/api/v1/admin/auth"
 	resp, err := http.PostForm(authAddr, formData)
 	if err != nil {
-		ctx.JSON(http.StatusUnauthorized, models.Error{common.StatusCodeUnknown, err.Error()})
+		ctx.JSON(http.StatusUnauthorized, models.Error{Code: common.StatusCodeUnknown, Message: err.Error()})
 		log.Debug("[ERROR]: ", err)
 		return
 	}
@@ -83,9 +83,9 @@ func (m *Movie) AddMovie(ctx *gin.Context) {
 	movie.ID = bson.NewObjectId()
 	err := m.movieDAO.Insert(movie)
 	if err == nil {
-		ctx.JSON(http.StatusOK, models.Message{"Successfully"})
+		ctx.JSON(http.StatusOK, models.Message{Message: "Successfully"})
 	} else {
-		ctx.JSON(http.StatusForbidden, models.Error{common.StatusCodeUnknown, err.Error()})
+		ctx.JSON(http.StatusForbidden, models.Error{Code: common.StatusCodeUnknown, Message: err.Error()})
 		log.Debug("[ERROR]: ", err)
 	}
 }
@@ -108,7 +108,7 @@ func (m *Movie) ListMovies(ctx *gin.Context) {
 	if err == nil {
 		ctx.JSON(http.StatusOK, movies)
 	} else {
-		ctx.JSON(http.StatusNotFound, models.Error{common.StatusCodeUnknown, "Cannot retrieve movie information"})
+		ctx.JSON(http.StatusNotFound, models.Error{Code: common.StatusCodeUnknown, Message: "Cannot retrieve movie information"})
 		log.Debug("[ERROR]: ", err)
 	}
 }

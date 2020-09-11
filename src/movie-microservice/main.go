@@ -6,7 +6,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"os"
 
@@ -77,8 +76,6 @@ func main() {
 	defer databases.Database.Close()
 
 	c := controllers.Movie{}
-
-	fmt.Println("++++++++++++")
 
 	// Simple group: v1
 	v1 := m.router.Group("/api/v1")

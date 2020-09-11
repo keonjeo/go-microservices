@@ -26,7 +26,7 @@ func (m *Movie) GetAll() ([]models.Movie, error) {
 	defer sessionCopy.Close()
 
 	// Get a collection to execute thbcegmorste query against.
-	collection := sessionCopy.DB(databases.Database.Databasename).C(COLLECTION)
+	collection := sessionCopy.DB(databases.Database.DatabaseName).C(COLLECTION)
 
 	var movies []models.Movie
 	err := collection.Find(bson.M{}).All(&movies)
@@ -39,7 +39,7 @@ func (m *Movie) GetByID(id string) (models.Movie, error) {
 	defer sessionCopy.Close()
 
 	// Get a collection to execute the query against.
-	collection := sessionCopy.DB(databases.Database.Databasename).C(COLLECTION)
+	collection := sessionCopy.DB(databases.Database.DatabaseName).C(COLLECTION)
 
 	var movie models.Movie
 	err := collection.FindId(bson.ObjectIdHex(id)).One(&movie)
@@ -52,7 +52,7 @@ func (m *Movie) Insert(movie models.Movie) error {
 	defer sessionCopy.Close()
 
 	// Get a collection to execute the query against.
-	collection := sessionCopy.DB(databases.Database.Databasename).C(COLLECTION)
+	collection := sessionCopy.DB(databases.Database.DatabaseName).C(COLLECTION)
 
 	err := collection.Insert(&movie)
 	return err
@@ -64,7 +64,7 @@ func (m *Movie) Delete(movie models.Movie) error {
 	defer sessionCopy.Close()
 
 	// Get a collection to execute the query against.
-	collection := sessionCopy.DB(databases.Database.Databasename).C(COLLECTION)
+	collection := sessionCopy.DB(databases.Database.DatabaseName).C(COLLECTION)
 
 	err := collection.Remove(&movie)
 	return err
@@ -76,7 +76,7 @@ func (m *Movie) Update(movie models.Movie) error {
 	defer sessionCopy.Close()
 
 	// Get a collection to execute the query against.
-	collection := sessionCopy.DB(databases.Database.Databasename).C(COLLECTION)
+	collection := sessionCopy.DB(databases.Database.DatabaseName).C(COLLECTION)
 
 	err := collection.UpdateId(movie.ID, &movie)
 	return err

@@ -8,8 +8,8 @@
     "logMaxBackups": 10,
     "logMaxAge": 30,
 
-    "mgAddrs": "127.0.0.1:27017",
-    "mgDbName": "go-microservices",
+    "mgAddrs": "127.0.0.1:27000",
+    "mgDbName": "movie-service",
     "mgDbUsername": "",
     "mgDbPassword": "",
 

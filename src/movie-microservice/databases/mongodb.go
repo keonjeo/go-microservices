@@ -16,18 +16,18 @@ import (
 // MongoDB manages MongoDB connection
 type MongoDB struct {
 	MgDbSession  *mgo.Session
-	Databasename string
+	DatabaseName string
 }
 
 // Init initializes mongo database
 func (db *MongoDB) Init() error {
-	db.Databasename = common.Config.MgDbName
+	db.DatabaseName = common.Config.MgDbName
 
 	// DialInfo holds options for establishing a session with a MongoDB cluster.
 	dialInfo := &mgo.DialInfo{
 		Addrs:    []string{common.Config.MgAddrs}, // Get HOST + PORT
 		Timeout:  60 * time.Second,
-		Database: db.Databasename,            // Database name
+		Database: db.DatabaseName,            // Database name
 		Username: common.Config.MgDbUsername, // Username
 		Password: common.Config.MgDbPassword, // Password
 	}
